@@ -1,0 +1,14 @@
+[run]
+branch = True
+source =
+    pycleaner
+
+[report]
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    def __repr__
+    def __str__
+
+omit =
+    tests/*
