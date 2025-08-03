@@ -28,7 +28,7 @@ def get_clean_import(file):
         if ' as ' in stripped:
             parts = stripped.split(' as ')
 
-            module = next_word(' as ', line)
+            module = next_words(' as ', line, False)
             if(is_used(module, content)):
                 filtered_content.append(parts[0].strip() + ' as ' + module)
             continue    
@@ -88,15 +88,13 @@ def read(file):
         content = f.read().splitlines()
     return content
 
-def next_words(word, line):
+def next_words(word, line,split=True):
     start = line.find(word)    
     after_target = line[start + len(word):].strip()
-    return after_target.split(',')
-
-def next_word(word, line):
-    start = line.find(word)    
-    after_target = line[start + len(word):].strip()
+    if split:
+        return after_target.split(',')
     return after_target if after_target else None
+
 
 def is_used(module, content):
     pattern = r'\b' + re.escape(module) + r'\b'

@@ -1,6 +1,6 @@
 import argparse
 import logging
-from core import clean_import
+from .core import clean_import
 from pathlib import Path
 
 # base logger
