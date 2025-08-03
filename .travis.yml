@@ -1,12 +1,11 @@
 language: python
 
 python:
-  - "3.11"  # or other versions you want to test against
+  - "3.11"
 
-# Install dependencies
 install:
   - pip install -r requirements.txt
+  - pip install pytest
 
-# Run the tests
 script:
   - pytest
