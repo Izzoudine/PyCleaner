@@ -1,0 +1,20 @@
+[project]
+name = "py-cleaner"
+version = "0.1.0"
+description = "A short description"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+authors = [
+  { name="Izzoudine KANTA", email="izzoudine.kanta@epitech.eu" }
+]
+dependencies = [
+  "pytest",
+  "pytest-benchmark",
+  "pytest-cov",
+  "coverage"
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
