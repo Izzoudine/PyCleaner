@@ -1,7 +1,7 @@
-from .utils import get_clean_import,write
+from .utils import get_clean_import,write_file
 
 def clean_import(file):
     clean_ = get_clean_import(file)
-    write(file,clean_)
+    write_file(file,clean_)
     
 

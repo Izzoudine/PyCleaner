@@ -1,20 +1,18 @@
-[project]
-name = "py-cleaner"
-version = "0.1.0"
-description = "A short description"
-readme = "README.md"
-requires-python = ">=3.6"
-license = {text = "MIT"}
-authors = [
-  { name="Izzoudine KANTA", email="izzoudine.kanta@epitech.eu" }
-]
-dependencies = [
-  "pytest",
-  "pytest-benchmark",
-  "pytest-cov",
-  "coverage"
-]
-
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycleaner-cli"
+version = "0.1.1"
+description = "A lightweight CLI tool to automatically remove unused import statements from your Python scripts"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Izzoudine KANTA", email = "izzoudine.kanta@epitech.eu"}
+]
+dependencies = []
+
+[project.scripts]
+pycleaner-cli = "pycleaner.cli:main"

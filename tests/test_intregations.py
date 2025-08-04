@@ -1,6 +1,6 @@
 import os
 import tempfile
-from pycleaner.utils import read,write,get_clean_import
+from pycleaner.utils import read_file,write_file,get_clean_import
 
 def test_write_and_read():
     data = ["kobe","micheal","lebron"]
@@ -9,8 +9,8 @@ def test_write_and_read():
         temp = tf.name
 
     try:
-        write(temp,data)
-        result = read(temp)
+        write_file(temp,data)
+        result = read_file(temp)
         assert result == data
     finally:
         os.remove(temp)       
@@ -48,7 +48,7 @@ def test_import_cleaner():
 
     try:
         filtered = get_clean_import(input_file_path)
-        write(output_file_path, filtered)
+        write_file(output_file_path, filtered)
 
         with open(output_file_path, 'r') as f:
             result_lines = f.read().splitlines()

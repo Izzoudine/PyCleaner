@@ -1,18 +1,18 @@
 from unittest.mock import mock_open, patch
-from pycleaner.utils import is_used,next_words,read,write,clean_multiline_import,get_clean_import
+from pycleaner.utils import _is_module_used,_get_next_words,read_file,write_file,clean_multiline_import,get_clean_import
 
 def test_module_used():
     content = [
         "import numpy as np",
         "data = np.array([1, 2, 3])"
     ]
-    assert is_used("np",content) is True
+    assert _is_module_used("np",content) is True
 
 def test_module_not_used():
     content = [
         "import numpy as np",
     ]
-    assert is_used("np",content) is False
+    assert _is_module_used("np",content) is False
 
 def test_module_used_in_multiline_import():
     content = [
@@ -23,7 +23,7 @@ def test_module_used_in_multiline_import():
         "system('ls')"
 
     ]
-    assert is_used("system",content) is True        
+    assert _is_module_used("system",content) is True        
 
 def test_module_not_used_after_multiline_import():
     content = [
@@ -32,25 +32,25 @@ def test_module_not_used_after_multiline_import():
         "    system",
         ")"
     ]
-    assert is_used("system",content) is False   
+    assert _is_module_used("system",content) is False   
 
 def test_next_word_found_not_split():
     line = "import numpy as np"     
-    assert next_words("import",line,False) == "numpy as np"   
+    assert _get_next_words("import",line,False) == "numpy as np"   
 
 def test_next_word_not_found_not_split():
     line = "import"     
-    assert next_words("import",line,False) == None
+    assert _get_next_words("import",line,False) == None
 
 def test_next_words_found_split():
     line = "import numpy as np"     
-    assert next_words("import",line) == ["numpy as np"]    
+    assert _get_next_words("import",line) == ["numpy as np"]    
 
 def test_read():
     fake_content = "hello\nworld"
     m = mock_open(read_data=fake_content)
     with patch("builtins.open", m):
-        lines = read("dummy.txt")
+        lines = read_file("dummy.txt")
 
     assert lines == ["hello", "world"]
 
@@ -59,7 +59,7 @@ def test_write():
     m = mock_open()
 
     with patch("builtins.open", m):
-        write("dummy.txt", data)
+        write_file("dummy.txt", data)
 
     m().writelines.assert_called_once()
 
